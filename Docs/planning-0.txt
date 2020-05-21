@@ -1,0 +1,118 @@
+ public interface IPlugin<in TParameter, TResult> : IPluginBase
+    {
+        Task<TResult> Handle(TParameter parameter);
+    }
+
+    
+    public interface IPlagable1
+    {
+        void Init(IString)
+    }
+
+    public interface IPlagable2
+    {
+        void Inti()
+    }
+	
+
+--------------------
+
+   //routing: IGameconf2.svc/NbaMethod  arg1 arg2
+    interface IGameconf2 {
+
+    }
+
+    [Interface(nameof(IGameconf2))]
+    public class NbaMethod : PluginParameter<NbaMethodResult>
+    {
+        public string Parameter { get; set; }
+    }
+
+------------------------
+
+    /*
+     *1. serviceparameters :  set -> services -> core -> thread pool (http stack)
+     *
+     * 1. core[
+     *2. service setup -> few flow -> per project -> set plugin -> key (nba project, wwz) -> get project parameters. 
+     *
+     *
+     * ? gc + service param (projects) - common data
+     *
+     * IGameParameters - 
+     *   GetPingParam
+     *   GetDefauletProfile
+     *
+     *   (Gc <- xls, json)
+     *    (alt storage <- json)
+     *
+     *Igamecon
+     *
+     *  http req > plain route -> check eregisetered route-> execeutioner (stack arg) -> invoke and get result
+     *  plugin discoveery -> create map -> check route -> create contract and set args inside -> executionaer -> pluginmanager. invoke
+     *
+     *
+     * Scopes:
+     *
+     *1. arena
+     * 2. env
+     * 3. project
+     * 4. group
+     * 5. country (rc?/ by IP address)
+     *
+     *  threadpool (thread count) - non group/project setting
+     *  mathamking params - per project/group/country ??
+     *
+     * РјРѕР¶РµРєС‚ Р»Рё РѕРЅ РїСЂРёСЃСѓС‚СЃС‚РІРѕРІР°С‚СЊ РІ group and country?
+     * get country scope 
+     *
+     *
+     * reqs: hierarchy scopes
+     * override, increment, 
+     *
+     * 1->2->3->4->5   (extend lookup parameters from head)
+     *1. param1
+     *   param2
+     *
+     * 3 param1 (override)
+     *   param3
+    *    param2
+     *
+     * 4 param1 (override)
+     *   param2
+     *   param3
+     *
+     *
+     *
+     * /*var providerConfig =  get config provider (by hash, titleid) -> tree by rules
+            1. problem (setup configuration)
+
+            providfe.GetParam<>(new GetOffersByTag(){string configurationHash, string tagName))) 
+
+            BotsParameters (property -> [BotsParameters]contract)
+             
+            
+            success / 404 (setup per project)
+
+
+             provider.GetParam()
+             
+            2. gc scope post/get
+
+     //IApplicationContext.Get RequestContext
+            //    var paramKeyProject
+
+            //        var parma = getProjectConfigutration<Mathcmakineg>(paramKeyProject)
+
+
+    PRoblem!: 
+    public class NbaMethodPlugin1 : IPlugin<NbaMethod, NbaMethodResult>
+    public class NbaMethodPlugin2 : IPlugin<NbaMethod, NbaMethodResult2>
+
+             */
+	
+	
+	----------------------------------------------------------------------
+	
+	
+	
