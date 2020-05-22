@@ -20,7 +20,6 @@ namespace Plugin
 
             // new approach
             var pluginManager = new PluginManager(new ConfigurationProvider());
-            pluginManager.Load();
             var command = new NbaMethod { Parameter = "test" };
             await pluginManager.ExecuteCommand(command);
             Console.WriteLine(command.Result?.OutputString);

@@ -15,9 +15,10 @@ namespace Plugin.Core
         public PluginManager(IConfigurationProvider configurationProvider)
         {
             _configurationProvider = configurationProvider;
+            InitializePlugins();
         }
 
-        public void Load()
+        private void InitializePlugins()
         {
             var baseType = typeof(IPluginBase);
             var basePath = Path.Combine(Directory.GetCurrentDirectory(), "Plugins");
