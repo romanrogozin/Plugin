@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Plugin.Core;
+using Plugin.Nba.Contracts;
 
 namespace Plugin.Nba
 {
@@ -7,11 +8,11 @@ namespace Plugin.Nba
     {
         public string Name { get; } = nameof(NbaMethodPlugin);
 
-        public Task Handle(NbaMethod parameter)
+        public Task Execute(NbaMethod command)
         {
-            parameter.Result = new NbaMethodResult
+            command.Result = new NbaMethodResult
             {
-                StringProperty = $"{Name}, {parameter.Parameter}"
+                StringProperty = $"{Name}, {command.Parameter}"
             };
 
             return Task.CompletedTask;

@@ -1,4 +1,4 @@
-﻿namespace Plugin.Nba
+﻿namespace Plugin.Nba.Contracts
 {
     public class NbaMethodResult
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Plugin.Core;
-using Plugin.Nba;
+using Plugin.Nba.Contracts;
 
 namespace Plugin
 {
@@ -19,9 +19,9 @@ namespace Plugin
             // new approach
             var pluginManager = new PluginManager();
             pluginManager.Load();
-            var method = new NbaMethod() {Parameter = "test"};
-            await pluginManager.Invoke(method);
-            Console.WriteLine(method.Result?.StringProperty);
+            var command = new NbaMethod { Parameter = "test" };
+            await pluginManager.ExecuteCommand(command);
+            Console.WriteLine(command.Result?.StringProperty);
             Console.ReadKey();
         }
     }

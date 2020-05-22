@@ -1,6 +1,5 @@
-﻿
-using System.Threading.Tasks;
-using Plugin.Nba;
+﻿using System.Threading.Tasks;
+using Plugin.Nba.Contracts;
 
 namespace Plugin
 {

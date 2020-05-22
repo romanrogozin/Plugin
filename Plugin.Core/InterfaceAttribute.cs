@@ -4,11 +4,11 @@ namespace Plugin.Core
 {
     public class InterfaceAttribute : Attribute
     {
-        public string Name { get; set; }
+        public Type Type { get; set; }
 
-        public InterfaceAttribute(string name)
+        public InterfaceAttribute(Type type)
         {
-            Name = name;
+            Type = type;
         }
     }
 }

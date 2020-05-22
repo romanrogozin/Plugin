@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.Core", "Plugin.Core\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.Nba", "Plugin.Nba\Plugin.Nba.csproj", "{D757998D-2589-4DDC-BE49-3D0BACDD7220}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.Nba.Contracts", "Plugin.Nba.Contracts\Plugin.Nba.Contracts.csproj", "{BA977CAF-94E5-4332-B82D-FE50686505F3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{D757998D-2589-4DDC-BE49-3D0BACDD7220}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D757998D-2589-4DDC-BE49-3D0BACDD7220}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D757998D-2589-4DDC-BE49-3D0BACDD7220}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA977CAF-94E5-4332-B82D-FE50686505F3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA977CAF-94E5-4332-B82D-FE50686505F3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA977CAF-94E5-4332-B82D-FE50686505F3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA977CAF-94E5-4332-B82D-FE50686505F3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

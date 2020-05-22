@@ -23,15 +23,16 @@ namespace Plugin.Core
 
                 foreach (var type in types)
                 {
-                    var instance = Activator.CreateInstance(assembly.FullName, type.FullName);
+                    // var instance = Activator.CreateInstance(assembly.FullName, type.FullName);
+                    var instance = Activator.CreateInstance(type);
                     {
                         Type genericArg = null;
                         foreach (var intType in type.GetInterfaces())
                         {
                             if (intType.IsGenericType && intType.GetGenericTypeDefinition() == typeof(IPlugin<>))
                             {
-                                genericArg = intType.GetGenericArguments().SingleOrDefault();
-                                if(genericArg!=null)
+                                genericArg = intType.GetGenericArguments().FirstOrDefault();
+                                if (genericArg != null)
                                     break;
                             }
                         }
@@ -42,16 +43,17 @@ namespace Plugin.Core
             }
         }
 
-        public Task Invoke<T>(T method)
+        public Task ExecuteCommand<T>(T method) where T : BasePluginCommand
         {
-            return GetPlugin<T>().Handle(method);
+            return GetPlugin<T>().Execute(method);
         }
 
-        private IPlugin<T> GetPlugin<T>()
+        public IPlugin<T> GetPlugin<T>() where T : BasePluginCommand
         {
             var type = typeof(T);
             if (_plugins.TryGetValue(type.FullName, out var pluginInstance))
-                return (IPlugin<T>)((ObjectHandle)pluginInstance).Unwrap();
+               // return (IPlugin<T>)((ObjectHandle)pluginInstance).Unwrap();
+            return (IPlugin<T>)(pluginInstance);
             throw new KeyNotFoundException(type.FullName);
         }
 
@@ -81,4 +83,5 @@ namespace Plugin.Core
             }
         }
     }
+
 }

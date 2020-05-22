@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace Plugin.Core
 {
@@ -8,8 +7,8 @@ namespace Plugin.Core
         public string Name { get; }
     }
 
-    public interface IPlugin<in TParameter> : IPluginBase
+    public interface IPlugin<in TCommand> : IPluginBase where TCommand : BasePluginCommand
     {
-        Task Handle(TParameter parameter);
+        Task Execute(TCommand command);
     }
 }

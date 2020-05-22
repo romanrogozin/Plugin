@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Plugin.Core\Plugin.Core.csproj" />
+    <ProjectReference Include="..\Plugin.Nba.Contracts\Plugin.Nba.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
