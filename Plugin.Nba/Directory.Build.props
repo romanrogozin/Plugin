@@ -1,8 +1,8 @@
 <Project>
 
-   <Target Type="CopyFilesForModule" AfterTargets="AfterBuild">
+   <Target Name="CopyFilesForModule" AfterTargets="AfterBuild">
     <CreateItem Include="bin\$(Configuration)\$(TargetFramework)\*.dll" >
-      <Output TaskParameter="Include" ItemType="FilesToCopy" />
+      <Output TaskParameter="Include" ItemName="FilesToCopy" />
     </CreateItem>
     <Copy SourceFiles="@(FilesToCopy)" DestinationFolder="..\Plugin\bin\$(Configuration)\$(TargetFramework)\Plugins" />
 

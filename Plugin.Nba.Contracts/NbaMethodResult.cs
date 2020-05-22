@@ -2,6 +2,16 @@
 {
     public class NbaMethodResult
     {
-        public string StringProperty { get; set; }
+        public string OutputString { get; set; }
+    }
+
+    public class NbaClass
+    {
+        public string NbaProperty { get; set; }
+    }
+
+    public class WwzClass
+    {
+        public int WwzProperty { get; set; }
     }
 }

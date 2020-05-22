@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Plugin.Core\Plugin.Core.csproj" />
     <ProjectReference Include="..\Plugin.Nba.Contracts\Plugin.Nba.Contracts.csproj" />
   </ItemGroup>

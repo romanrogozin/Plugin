@@ -3,14 +3,19 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.Remoting;
 using System.Threading.Tasks;
 
 namespace Plugin.Core
 {
     public class PluginManager
     {
+        private readonly IConfigurationProvider _configurationProvider;
         readonly Dictionary<string, object> _plugins = new Dictionary<string, object>();
+
+        public PluginManager(IConfigurationProvider configurationProvider)
+        {
+            _configurationProvider = configurationProvider;
+        }
 
         public void Load()
         {
@@ -23,22 +28,35 @@ namespace Plugin.Core
 
                 foreach (var type in types)
                 {
-                    // var instance = Activator.CreateInstance(assembly.FullName, type.FullName);
-                    var instance = Activator.CreateInstance(type);
+                    //var instance = Activator.CreateInstance(assembly.FullName, type.FullName);
+                    Type genericArg = null;
+                    foreach (var intType in type.GetInterfaces())
                     {
-                        Type genericArg = null;
-                        foreach (var intType in type.GetInterfaces())
+                        if (intType.IsGenericType && intType.GetGenericTypeDefinition() == typeof(IPlugin<>))
                         {
-                            if (intType.IsGenericType && intType.GetGenericTypeDefinition() == typeof(IPlugin<>))
-                            {
-                                genericArg = intType.GetGenericArguments().FirstOrDefault();
-                                if (genericArg != null)
-                                    break;
-                            }
+                            genericArg = intType.GetGenericArguments().FirstOrDefault();
+                            if (genericArg != null)
+                                break;
                         }
-
-                        _plugins.Add(genericArg.FullName, instance);
                     }
+
+                    if (genericArg != null)
+                    {
+                        var instance = Activator.CreateInstance(type);
+                        if (!_plugins.ContainsKey(genericArg.FullName))
+                        {
+                            if (type.GetInterfaces().Any(f => f.GetGenericTypeDefinition() == typeof(IPluginGameConfiguration<>)))
+                            {
+                                var methodInfo = type.GetMethod("Initialize");
+                                if (methodInfo != null)
+                                {
+                                    methodInfo.Invoke(instance, new object[] { _configurationProvider });
+                                }
+                            }
+                            _plugins.Add(genericArg.FullName, instance);
+                        }
+                    }
+
                 }
             }
         }
@@ -52,8 +70,8 @@ namespace Plugin.Core
         {
             var type = typeof(T);
             if (_plugins.TryGetValue(type.FullName, out var pluginInstance))
-               // return (IPlugin<T>)((ObjectHandle)pluginInstance).Unwrap();
-            return (IPlugin<T>)(pluginInstance);
+                // return (IPlugin<T>)((ObjectHandle)pluginInstance).Unwrap();
+                return (IPlugin<T>)(pluginInstance);
             throw new KeyNotFoundException(type.FullName);
         }
 
@@ -78,7 +96,7 @@ namespace Plugin.Core
             }
             catch
             {
-                // ign
+                // ignore
                 return Enumerable.Empty<Type>();
             }
         }

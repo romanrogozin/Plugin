@@ -11,4 +11,30 @@ namespace Plugin.Core
     {
         Task Execute(TCommand command);
     }
+
+    public interface IPluginGameConfiguration<in TCommand> : IPlugin<TCommand> where TCommand : BasePluginCommand
+    {
+        void Initialize(IConfigurationProvider configurationProvider);
+    }
+
+    public interface IConfigurationProvider
+    {
+        string GetJsonConfiguration();
+    }
+
+    public class ConfigurationProvider : IConfigurationProvider
+    {
+        public string GetJsonConfiguration()
+        {
+            return @"
+{
+    ""CommonProperty"": ""Common"",
+	""NbaClass"": {
+		""NbaProperty"": ""NBA""
+	},
+	""WwzProperty"": 1
+}
+";
+        }
+    }
 }

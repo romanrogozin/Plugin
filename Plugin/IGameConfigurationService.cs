@@ -5,7 +5,7 @@ namespace Plugin
 {
     public interface IGameConfigurationService
     {
-        public Task<string> Method();
+        public Task<string> CommonMethod();
         public Task<NbaMethodResult> NbaMethod(string s);
         public Task<string> WwzMethod();
     }

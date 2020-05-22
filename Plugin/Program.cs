@@ -10,18 +10,20 @@ namespace Plugin
         static async Task Main(string[] args)
         {
             // old approach
-            IGameConfigurationService service = new GameConfigurationService(new GameConfigurationManager());
-            Console.WriteLine(await service.Method());
-            Console.WriteLine((await service.NbaMethod("test")).StringProperty);
+            IGameConfigurationService service = new GameConfigurationService(new ConfigurationProvider());
+            Console.WriteLine(await service.CommonMethod());
+            Console.WriteLine((await service.NbaMethod("test")).OutputString);
             Console.WriteLine(await service.WwzMethod());
-
+            
+            
+            Console.WriteLine();
 
             // new approach
-            var pluginManager = new PluginManager();
+            var pluginManager = new PluginManager(new ConfigurationProvider());
             pluginManager.Load();
             var command = new NbaMethod { Parameter = "test" };
             await pluginManager.ExecuteCommand(command);
-            Console.WriteLine(command.Result?.StringProperty);
+            Console.WriteLine(command.Result?.OutputString);
             Console.ReadKey();
         }
     }

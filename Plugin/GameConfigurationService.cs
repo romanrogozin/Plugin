@@ -1,30 +1,43 @@
 ﻿using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Plugin.Core;
 using Plugin.Nba.Contracts;
 
 namespace Plugin
 {
     public class GameConfigurationService : IGameConfigurationService
     {
-        private readonly IGameConfigurationManager _gameConfigurationManager;
+        private readonly IConfigurationProvider _configurationProvider;
 
-        public GameConfigurationService(IGameConfigurationManager gameConfigurationManager)
+        public GameConfigurationService(IConfigurationProvider configurationProvider)
         {
-            _gameConfigurationManager = gameConfigurationManager;
+            _configurationProvider = configurationProvider;
         }
 
-        public Task<string> Method()
+        public Task<string> CommonMethod()
         {
-            return _gameConfigurationManager.GmMethod();
+            var json = _configurationProvider.GetJsonConfiguration();
+            return Task.FromResult($"{nameof(CommonMethod)}: {JToken.Parse(json)["CommonProperty"]}");
         }
 
         public Task<NbaMethodResult> NbaMethod(string s)
         {
-            return _gameConfigurationManager.GmNbaMethod(s);
+            var json = _configurationProvider.GetJsonConfiguration();
+            var nbaClass = JToken.Parse(json)["NbaClass"].ToObject<NbaClass>();
+            var result = new NbaMethodResult
+            {
+                OutputString = $"{nameof(NbaMethod)}: {nbaClass.NbaProperty}; {s}"
+            };
+
+            return Task.FromResult(result);
         }
 
         public Task<string> WwzMethod()
         {
-            return _gameConfigurationManager.GmWwzMethod();
+            var json = _configurationProvider.GetJsonConfiguration();
+            var wwzClass = JsonConvert.DeserializeObject<WwzClass>(json);
+            return Task.FromResult($"{nameof(WwzMethod)}: {wwzClass.WwzProperty}");
         }
     }
 }
