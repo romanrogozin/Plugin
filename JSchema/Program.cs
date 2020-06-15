@@ -73,11 +73,13 @@ namespace JSchema
                 //GenerateImmutableDictionaryProperties = true
             });
             var generateFile = generator.GenerateFile();
-            await File.WriteAllTextAsync("..\\..\\..\\example.cs", generateFile);
+            await File.WriteAllTextAsync("example.cs", generateFile);
             var serializeObject = JsonConvert.SerializeObject(t);
-            await File.WriteAllTextAsync("..\\..\\..\\out.json", serializeObject);
-            var text = File.ReadAllText("..\\..\\..\\out.json");
+            await File.WriteAllTextAsync("out.json", serializeObject);
+            var text = File.ReadAllText("out.json");
+            var obj = JsonConvert.DeserializeObject<OfferParameters>(text);
             Console.WriteLine(text);
+            Console.WriteLine(obj.MassOffersCacheInvalidationInterval);
             Console.ReadKey();
         }
     }
