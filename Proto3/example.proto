@@ -1,0 +1,37 @@
+﻿syntax = "proto3";
+package tutorial;
+
+import "google/protobuf/timestamp.proto";
+
+option csharp_namespace = "Sample";
+
+
+/*wfefwefwefwef*/
+enum ServiceAccessRole {
+	Nodne = 0;
+	Debug = 1;
+	Guest =2;
+	Services=4;
+	GameClient=8;
+	DedicatedServer=16;
+	Game=24;
+	DsmAgent=32;
+	WebPortal=64;
+	BotManager=128;
+	CrashAnalyzer=256;
+	Tool=304;
+	ESL=512;
+	BILookup=1024;
+	Diagnostics=2048;
+}
+
+message OfferParameters{
+	map<int32, ServiceAccessRole> OfferAccessRoleMap = 1;
+	bool SteamTransactionsEnabled = 2;
+	bool DigitalRiverTransactionsEnabled =3;
+	bool GooglePlayTransactionsEnabled =4;
+	bool AppStoreTransactionsEnabled =5;
+	bool DisableAppStoreReceiptVerification =6;
+	bool DisableGooglePlayTransactionVerification =7;
+	google.protobuf.Timestamp MassOffersCacheInvalidationInterval =8; //BLABLABLA descrption
+}
