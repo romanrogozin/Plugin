@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<TargetFramework>netcoreapp3.0</TargetFramework>
+		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
+		<PublishSingleFile>true</PublishSingleFile>
+		<TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
+		<SelfContained>true</SelfContained>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="NJsonSchema" Version="10.1.21" />
+		<PackageReference Include="NJsonSchema.CodeGeneration.CSharp" Version="10.1.21" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="System.IO.FileSystem.Primitives" Version="4.3.0" />
+		<PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
+	</ItemGroup>
+
+</Project>

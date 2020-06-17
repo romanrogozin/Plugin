@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "JSchema": {
+      "commandName": "Project",
+      "workingDirectory": "C:\\gitprojects\\Plugin\\JSchema"
+    }
+  }
+}
