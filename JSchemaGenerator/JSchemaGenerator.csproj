@@ -3,10 +3,14 @@
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>netcoreapp3.0</TargetFramework>
-		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
-		<PublishSingleFile>true</PublishSingleFile>
 		<TargetLatestRuntimePatch>true</TargetLatestRuntimePatch>
-		<SelfContained>true</SelfContained>
+		<PackAsTool>true</PackAsTool>
+		<ToolCommandName>jschemagenerator</ToolCommandName>
+		<PackageOutputPath>../nupkg</PackageOutputPath>
+		<PackageId>jschemagenerator</PackageId>
+		<PackageVersion>1.0.0</PackageVersion>
+		<AssemblyName>JSchemaGenerator</AssemblyName>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -18,5 +22,9 @@
 		<PackageReference Include="System.IO.FileSystem.Primitives" Version="4.3.0" />
 		<PackageReference Include="System.Text.Encoding.Extensions" Version="4.3.0" />
 	</ItemGroup>
+
+	<Target Name="InstallPackage" AfterTargets="Pack">
+		<Exec Command="dotnet tool install --add-source ../nupkg jschemagenerator" />
+	</Target>
 
 </Project>
