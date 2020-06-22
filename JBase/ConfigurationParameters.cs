@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace Hydra.JsonSchema
+namespace SchemaConfiguration
 {
     public class ConfigurationParameters : IConfigurationParameters
     {

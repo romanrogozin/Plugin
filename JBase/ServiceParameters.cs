@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Hydra.JsonSchema
+namespace SchemaConfiguration
 {
     public class Configurator<T> where T : class, new()
     {

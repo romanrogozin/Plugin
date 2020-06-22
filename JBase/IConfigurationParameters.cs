@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Hydra.JsonSchema
+namespace SchemaConfiguration
 {
     public interface IConfigurationParameters
     {

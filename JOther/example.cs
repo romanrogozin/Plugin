@@ -4,7 +4,7 @@
 // </auto-generated>
 //----------------------
 
-namespace Hydra.JsonSchema
+namespace SchemaConfiguration
 {
     #pragma warning disable // Disable all warnings
 

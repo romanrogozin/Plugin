@@ -4,7 +4,7 @@
 // </auto-generated>
 //----------------------
 
-namespace Hydra.JsonSchema
+namespace SchemaConfiguration
 {
     #pragma warning disable // Disable all warnings
 
@@ -162,10 +162,10 @@ namespace Hydra.JsonSchema
         public bool PriorityQueueForNonplayers { get; set; } = false;
     
         [Newtonsoft.Json.JsonProperty("CommonQueueProfession", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public UserProfession CommonQueueProfession { get; set; } = Hydra.JsonSchema.UserProfession.Player;
+        public UserProfession CommonQueueProfession { get; set; } = SchemaConfiguration.UserProfession.Player;
     
         [Newtonsoft.Json.JsonProperty("F2Pmode", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public AccountFlagRule F2Pmode { get; set; } = Hydra.JsonSchema.AccountFlagRule.None;
+        public AccountFlagRule F2Pmode { get; set; } = SchemaConfiguration.AccountFlagRule.None;
     
         [Newtonsoft.Json.JsonProperty("MinTokenRefreshAfterMinutes", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public int MinTokenRefreshAfterMinutes { get; set; } = 5;

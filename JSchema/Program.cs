@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
-using Hydra.JsonSchema;
+using SchemaConfiguration;
 using Newtonsoft.Json;
 
 namespace JSchema
@@ -17,7 +17,7 @@ namespace JSchema
         {
             // var schema = JsonSchema.FromType<AuthorizationParameters>();
             //  var schemaData = schema.ToJson(); 
-            foreach (Type p in AppDomain.CurrentDomain.GetAssemblies().SelectMany(g => g.GetTypesWithHelpAttribute()))
+            foreach (Type p in AppDomain.CurrentDomain.GetAssemblies().SelectMany(g => g.GetTypesWithSchemaBindingAttribute()))
             {
                 {
                     Console.WriteLine(p.ExtractMeta());
@@ -40,11 +40,11 @@ namespace JSchema
 
     public static class MyClass
     {
-        public static IEnumerable<Type> GetTypesWithHelpAttribute(this Assembly assembly)
+        public static IEnumerable<Type> GetTypesWithSchemaBindingAttribute(this Assembly assembly)
         {
             foreach (var type in assembly.GetTypes())
             {
-                if (type.GetCustomAttributes(typeof(JsonSchemaNameAttribute), false).Length > 0)
+                if (type.GetCustomAttributes(typeof(SchemaBinding), false).Length > 0)
                 {
                     yield return type;
                 }
@@ -53,13 +53,13 @@ namespace JSchema
 
         public static string ExtractMeta(this Type type)
         {
-            var attribute = type.GetCustomAttribute<JsonSchemaNameAttribute>();
+            var attribute = type.GetCustomAttribute<SchemaBinding>();
             if (attribute == null) return null;
             
             var assembly = Assembly.GetAssembly(type);
             if (assembly == null) return null;
 
-            var resource = assembly.GetManifestResourceNames().SingleOrDefault(s => s.Contains(attribute.Name));
+            var resource = assembly.GetManifestResourceNames().SingleOrDefault(s => s.Contains(attribute.SchemaName));
             if (resource == null) return null;
 
             using (var stream = assembly.GetManifestResourceStream(resource))

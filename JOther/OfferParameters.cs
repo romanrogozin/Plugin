@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Hydra.JsonSchema
+namespace SchemaConfiguration
 {
 
-    [JsonSchemaName("example2.json")]
+    [SchemaBinding("example2.json")]
     public partial class AbstractDataServiceParameters
     {
 
     }
 
-    [JsonSchemaName("example.json")]
+    [SchemaBinding("example.json")]
     public partial class OfferParameters
     {
         private static readonly Dictionary<OfferAclType, ServiceAccessRole> _default = new Dictionary<OfferAclType, ServiceAccessRole>

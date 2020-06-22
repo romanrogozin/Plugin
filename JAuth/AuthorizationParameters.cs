@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Hydra.JsonSchema
+namespace SchemaConfiguration
 {
     public partial class AuthorizationFactProcessing
     {
@@ -11,7 +11,7 @@ namespace Hydra.JsonSchema
         }
     }
 
-    [JsonSchemaName("auth.json")]
+    [SchemaBinding("auth.json")]
     public partial class AuthorizationParameters
     {
         private static readonly Dictionary<UserProfession, AccountFlagRule> _profPermissions = new Dictionary<UserProfession, AccountFlagRule>
