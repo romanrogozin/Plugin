@@ -19,7 +19,7 @@
 	</ItemGroup>
 
 	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-		<Exec Command="dotnet tool run jschemagenerator --schema schema/auth.json --ns SchemaConfiguration" />
+		<Exec Command="dotnet tool run jschemagenerator --schema schema/auth.json --ns SchemaConfiguration -o schema" />
 	</Target>
 
 </Project>

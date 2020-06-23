@@ -10,7 +10,7 @@
   </ItemGroup>
 
 	<Target Name="PreBuild" BeforeTargets="PreBuildEvent">
-		<Exec Command="dotnet jschemagenerator -s schema\example.json schema\example2.json -n SchemaConfiguration" />
+		<Exec Command="dotnet jschemagenerator -s schema\example.json schema\example2.json -n SchemaConfiguration -o schema" />
 	</Target>
 
 	<ItemGroup>
